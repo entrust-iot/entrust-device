@@ -1,0 +1,9 @@
+{
+  "name": "entrust-device",
+  "version": "1.0.0",
+  "description": "Agent Code for Entrust",
+  "author": "Xavier LaRue <xlarue@macadamian.com>",
+  "main": "index.js",
+  "dependencies": {
+  }
+}
