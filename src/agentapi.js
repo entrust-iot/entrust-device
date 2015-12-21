@@ -4,7 +4,7 @@ function agentApi() {
   var self = this,
       http = require('http'),
       Q = require('q'),
-      REST_URL = '10.4.146.23',
+      REST_URL = '127.0.0.1',
       REST_PORT = '8080';
 
   self.login = login;
