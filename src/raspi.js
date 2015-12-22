@@ -5,11 +5,11 @@ var authenticated = false;
 
 
 
-//agentApi.login("123")
-//  .then(function(res) {
-//    console.log(res);
-//    authenticated = true;
-//  });
+agentApi.login("123")
+  .then(function(res) {
+    console.log(res);
+    authenticated = true;
+  });
 
 
 //J5 code
@@ -25,6 +25,10 @@ board.on("ready", function() {
 
   button.on("down", function() {
     console.log("Button pressed");
+    if(authenticated) {
+      console.log("Sending data to the cloud");
+      agentApi.send("sensor1", {value: 1});
+    }
   });
 
 });
