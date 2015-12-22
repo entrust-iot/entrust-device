@@ -35,7 +35,7 @@ board.on("ready", function() {
     button.on("down", function() {
         console.log("Button is down");
         if (indusInitialized) {
-            agentApi.send("sensor1", {value: "11"});
+            agentApi.send("sensor1", {value: Math.floor(Math.random()*10)});
         }
     });
     button.on("up", function() {
