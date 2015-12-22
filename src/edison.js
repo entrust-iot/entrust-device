@@ -13,6 +13,8 @@
 
 var agentApi = require("./agentapi");
 var indusInitialized = false;
+//Run the agent as a library
+var agent = require("../../entrust-agent/src/index");
 
 agentApi.login("123")
     .then(function(res) {
@@ -33,7 +35,7 @@ board.on("ready", function() {
     button.on("down", function() {
         console.log("Button is down");
         if (indusInitialized) {
-            agentApi.send("sensor1", "11");
+            agentApi.send("sensor1", {value: "11"});
         }
     });
     button.on("up", function() {
@@ -47,7 +49,7 @@ board.on("ready", function() {
         console.log("Photoresistor data: " + this.value);
         if (indusInitialized) {
             console.log("Sending data to Edge");
-            agentApi.send("sensor2", this.value);
+            agentApi.send("sensor2", {value: this.value});
         }
     });
 });
