@@ -27,7 +27,7 @@ board.on("ready", function() {
     console.log("Button pressed");
     if(authenticated) {
       console.log("Sending data to the cloud");
-      agentApi.send("sensor1", {value: 1});
+      agentApi.send("sensor1", {value: Math.floor(Math.random()*10)});
     }
   });
 
