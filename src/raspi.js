@@ -11,6 +11,14 @@ agentApi.login("123")
         authenticated = true;
     });
 
+var usonic = require('r-pi-usonic');
+usonic.init(function (error) {
+    if (error) {
+        console.log("Error initializing the ultrasonic sensor");
+        console.log(error);
+    }
+});
+var sensor = usonic.createSensor(24, 23, 500);
 
 //J5 code
 var five = require("johnny-five");
@@ -31,20 +39,9 @@ board.on("ready", function() {
         }
     });
 
-    var proximity = new five.Proximity({
-        controller: "HCSR04",
-        pin: "P1-11"
-    });
-
-    proximity.on("data", function() {
-        console.log("Proximity: ");
-        console.log("  cm  : ", this.cm);
-        console.log("  in  : ", this.in);
-        console.log("-----------------");
-    });
-
-    proximity.on("change", function() {
-        console.log("The obstruction has moved.");
-    });
+    setInterval(function() {
+        var distance = sensor();
+        console.log("Radar: " + distance + " cm");
+    }, 2000);
 
 });
