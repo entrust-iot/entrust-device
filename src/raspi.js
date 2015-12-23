@@ -63,5 +63,13 @@ board.on("ready", function() {
         console.log("No more motion, stopping data send");
         motionData.stop();
     });
-
+    motion.on("data", function() {
+//        console.log(this.value);
+    });
+motion.on("calibrated", function() {
+    console.log("calibrated");
+  });
+motion.on("change", function() {
+ console.log("changed");
+});
 });
