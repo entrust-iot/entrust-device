@@ -56,9 +56,11 @@ board.on("ready", function() {
         pin: "P1-23"
     });
     motion.on("motionstart", function() {
+        console.log("Motion detected, starting to send data from sensor2");
         motionData.start();
     });
     motion.on("motionend", function() {
+        console.log("No more motion, stopping data send");
         motionData.stop();
     });
 
