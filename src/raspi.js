@@ -11,15 +11,6 @@ agentApi.login("123")
         authenticated = true;
     });
 
-var usonic = require('r-pi-usonic');
-usonic.init(function (error) {
-    if (error) {
-        console.log("Error initializing the ultrasonic sensor");
-        console.log(error);
-    }
-});
-var sensor = usonic.createSensor(24, 23, 500);
-
 //J5 code
 var five = require("johnny-five");
 var Raspi = require("raspi-io");
@@ -38,10 +29,5 @@ board.on("ready", function() {
             agentApi.send("sensor1", {value: Math.floor(Math.random()*10)});
         }
     });
-
-    setInterval(function() {
-        var distance = sensor();
-        console.log("Radar: " + distance + " cm");
-    }, 2000);
 
 });
