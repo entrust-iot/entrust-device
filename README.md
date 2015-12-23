@@ -12,9 +12,5 @@ Here is a basic setup for a raspberry pi :
 - Execute git clone https://github.com/paxl13/entrust-device
 - Execute cd entrust-agent
 - Execute docker-compose build
-- docker-compose up
-
-This yeild a functionning either native or with docker container setup.
-You can start the agent in docker with the docker-compose up command in the
-agent subfolder.
-
+- Execute docker-compose up
+- You can then use the second virtual terminal to start the device code.
