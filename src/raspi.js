@@ -16,6 +16,28 @@ var five = require("johnny-five");
 var Raspi = require("raspi-io");
 var board = new five.Board({io: new Raspi()});
 
+var motionData = {
+    delay: 2000,
+    start: function() {
+        this.timer = setInterval(this.posting, this.delay);
+        this.posting();
+    },
+    stop: function() {
+        clearInterval(this.timer);
+    },
+    posting: function() {
+        //Send random data ranging from 600-700
+        var max = 700;
+        var min = 600;
+        if (authenticated) {
+            agentApi.send("sensor2", {
+                value: (Math.random()*(max-min)) + min
+            });
+        }
+    },
+    timer: {}
+};
+
 board.on("ready", function() {
     var led = new five.Led("P1-13");
     led.blink(500);
@@ -28,6 +50,16 @@ board.on("ready", function() {
             console.log("Sending data to the cloud");
             agentApi.send("sensor1", {value: Math.floor(Math.random()*10)});
         }
+    });
+
+    var motion = new five.Motion({
+        pin: "P1-23"
+    });
+    motion.on("motionstart", function() {
+        motionData.start();
+    });
+    motion.on("motionend", function() {
+        motionData.stop();
     });
 
 });
